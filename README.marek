@@ -1,0 +1,14 @@
+# Creating image:
+docker build -t jakewharton/gphotos-sync:marek .
+
+# Running with an 1h sync like described at
+# https://github.com/JakeWharton/docker-gphotos-sync
+#
+# --restart: https://stackoverflow.com/a/58970495
+docker run --restart=unless-stopped -dit \
+        -e "CRON=0 * * * *" \
+        -v $HOME/.config/gphotos-sync:/tmp/gphotos-cdp \
+        -v $HOME/Desktop/Photos/Marek\'s\ phone/sync:/download \
+        jakewharton/gphotos-sync:marek /app/sync.sh
+
+
